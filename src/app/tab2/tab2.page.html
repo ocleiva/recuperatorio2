@@ -1,17 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+     Busqueda y filtrar
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar>
+    <br>
+    <ion-searchbar show-clear-button="never" placeholder="Buscar"  (input)="BuscarPais($event)" animated ></ion-searchbar>
+    <br>
+    <ion-select label="Filtrar" label-placement="floating" fill="solid" [(ngModel)]="selectedFilter" (ngModelChange)="filterExchange()">
+     
+      <ion-select-option value="a-z">A-Z</ion-select-option>
+    </ion-select>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  </ion-toolbar>
+          <swiper-container [slidesPerView]="9.5"> 
+   
+            <swiper-slide *ngFor="let pais of respuestapais">
+            <ion-card>
+              <ion-card-header>
+                <ion-img src="{{pais.flags.png}}"></ion-img>
+            <ion-card-title> {{pais.name.common}} </ion-card-title>
+      
+      <ion-label>{{pais.region}}</ion-label>
+    </ion-card-header>
+   
+      
+  </ion-card>
+  </swiper-slide>
+  </swiper-container>
 </ion-content>
